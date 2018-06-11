@@ -1,0 +1,16 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "name": "Pascal PELLET"
+    },
+    {
+      "id": 2,
+      "name": "Pierre-Louis PELLET-DOYEN"
+    },
+    {
+      "id": 3,
+      "name": "Marie-Cécile BEAUQUIS"
+    }
+  ]
+}
