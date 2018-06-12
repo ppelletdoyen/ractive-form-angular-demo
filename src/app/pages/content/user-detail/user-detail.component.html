@@ -1,4 +1,4 @@
-<div class="container" style="margin-top: 70px;">
+<div *ngIf="userDetail" class="container" style="margin-top: 70px;">
   <h1>USER DETAIL !</h1>
   <form (ngSubmit)="save()" [formGroup]="userForm">
     <div class="form-group">
