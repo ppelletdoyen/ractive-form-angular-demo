@@ -1,3 +1,4 @@
+import { UserDetailResolveService } from './core/services/api/user-detail-resolve.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
@@ -25,7 +26,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
   ],
   providers: [
     UserApiService,
-    HttpClient
+    HttpClient,
+    UserDetailResolveService
   ],
   bootstrap: [AppComponent]
 })

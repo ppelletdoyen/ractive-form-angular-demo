@@ -4,6 +4,13 @@ import { User } from '../../../shared/model/user';
 import { Observable } from 'rxjs/Observable';
 import { env } from '../../../env';
 
+/*
+----- TODO backend ------------
+1. npm install json-server
+2. copy db.json > .
+3. json-server --watch db.json
+-------------------------------
+*/
 @Injectable()
 export class UserApiService {
 

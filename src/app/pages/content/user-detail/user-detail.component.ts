@@ -13,45 +13,41 @@ import { Subscription } from 'rxjs/Subscription';
 })
 export class UserDetailComponent implements OnInit {
 
-  paramsEvents: Subscription;
   userDetail: User;
   userForm: FormGroup;
+  saveEvents: Subscription;
 
-  constructor(private activeRoute: ActivatedRoute, private userService: UserApiService, private fb: FormBuilder, private router: Router) { }
+  constructor(private route: ActivatedRoute, private userService: UserApiService, private fb: FormBuilder, private router: Router) { }
 
   ngOnInit() {
     this.userForm = this.fb.group({
       name: ['', [Validators.required]]
     });
-    this.paramsEvents = this.activeRoute.params.pipe(
-      switchMap(param => this.userService.get(param.id)),
-    )
-    .subscribe(res => {
-      this.buildUserForm(res);
-    })
+    this.userDetail = this.route.snapshot.data['userDetail'];
+    this.buildUserForm();
   }
 
   onDestroy() {
-    if (this.paramsEvents) {
-      this.paramsEvents.unsubscribe();
+    if (this.saveEvents) {
+      this.saveEvents.unsubscribe();
     }
   }
 
   save() {
     const saveUser: User = this.prepareSaveUser();
-    this.userService.save(saveUser).subscribe(res => {
-      this.router.navigate(['/users']);
+    this.saveEvents = this.userService.save(saveUser).subscribe(res => {
+      this.router.navigate(['users']);
     }, (err) => {
       console.error(err);
     });
   }
 
   cancel() {
-    this.router.navigate(['/users']);
+    this.userForm.reset();
+    this.router.navigate(['users']);
   }
 
-  private buildUserForm(userDetail: User) {
-    this.userDetail = userDetail;
+  private buildUserForm() {
     this.userForm.reset({
       name: this.userDetail.name
     });
@@ -62,7 +58,7 @@ export class UserDetailComponent implements OnInit {
     const saveUser: User = {
       id: this.userDetail.id,
       name: formModel.name
-    }
+    };
     return saveUser;
   }
 

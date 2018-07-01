@@ -17,10 +17,8 @@ export class UsersComponent implements OnInit {
   constructor(private userService: UserApiService) { }
 
   ngOnInit() {
-    this.usersEvents = this.userService.list().pipe(
-      map(users => this.users = users)
-    )
-    .subscribe();
+    this.usersEvents = this.userService.list().pipe()
+    .subscribe(users => this.users = users);
   }
 
   onDestroy() {
