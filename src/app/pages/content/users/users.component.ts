@@ -1,8 +1,7 @@
+import { Observable } from 'rxjs/Observable';
 import { Component, OnInit } from '@angular/core';
-import { UserApiService } from '../../../core/services/api/user-api.service';
-import { Subscription } from 'rxjs/Subscription';
+import { UsersService } from '../../../core/services/users.service';
 import { User } from '../../../shared/model/user';
-import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-users',
@@ -11,20 +10,12 @@ import { map } from 'rxjs/operators';
 })
 export class UsersComponent implements OnInit {
 
-  users: User[];
-  usersEvents: Subscription;
+  usersObs: Observable<User[]>;
 
-  constructor(private userService: UserApiService) { }
+  constructor(private userService: UsersService) { }
 
   ngOnInit() {
-    this.usersEvents = this.userService.list().pipe()
-    .subscribe(users => this.users = users);
-  }
-
-  onDestroy() {
-    if (this.usersEvents) {
-      this.usersEvents.unsubscribe();
-    }
+    this.usersObs = this.userService.list();
   }
 
 }
