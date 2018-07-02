@@ -32,4 +32,9 @@ export class UsersService {
       headers: { 'Content-Type': 'application/json' }});
   }
 
+  isLoggedIn(): boolean {
+    // switch true <> false to test the guard service
+    return true;
+  }
+
 }

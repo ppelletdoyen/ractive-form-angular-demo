@@ -10,6 +10,7 @@ import { RouterModule } from '@angular/router';
 import { UsersService } from './core/services/users.service';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
+import { LoggedInGuardService } from './core/services/logged-in-guard.service';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { ReactiveFormsModule } from '@angular/forms';
   providers: [
     UsersService,
     HttpClient,
-    DetailResolveService
+    DetailResolveService,
+    LoggedInGuardService
   ],
   bootstrap: [AppComponent]
 })
