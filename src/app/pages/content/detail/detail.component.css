@@ -1,0 +1,6 @@
+.flex-row-reverse {
+    display: flex;
+    justify-content: space-around;
+    flex-direction: row-reverse;
+    width: 150px;
+}

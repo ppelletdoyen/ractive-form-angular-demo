@@ -1,15 +1,15 @@
 import { TestBed, inject } from '@angular/core/testing';
 
-import { UserDetailResolveService } from './user-detail-resolve.service';
+import { DetailResolveService } from './detail-resolve.service';
 
 describe('UserDetailResolveService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [UserDetailResolveService]
+      providers: [DetailResolveService]
     });
   });
 
-  it('should be created', inject([UserDetailResolveService], (service: UserDetailResolveService) => {
+  it('should be created', inject([DetailResolveService], (service: DetailResolveService) => {
     expect(service).toBeTruthy();
   }));
 });

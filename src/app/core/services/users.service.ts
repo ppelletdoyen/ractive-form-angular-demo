@@ -1,8 +1,9 @@
+import { User } from './../../shared/model/user';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { User } from '../../../shared/model/user';
 import { Observable } from 'rxjs/Observable';
-import { env } from '../../../env';
+import { delay } from 'rxjs/operators';
+import { ENV } from '../../env';
 
 /*
 ----- TODO backend ------------
@@ -12,20 +13,22 @@ import { env } from '../../../env';
 -------------------------------
 */
 @Injectable()
-export class UserApiService {
+export class UsersService {
 
   constructor(private http: HttpClient) { }
 
   list(): Observable<User[]> {
-    return this.http.get<User[]>(`${env.backendUrl}/users/`);
+    // add delay to test the async pipe
+    return this.http.get<User[]>(`${ENV.backendUrl}/users/`).pipe(delay(500));
   }
 
   get(userId: number): Observable<User> {
-    return this.http.get<User>(`${env.backendUrl}/users/${userId}`);
+    // add delay to test the resolver service
+    return this.http.get<User>(`${ENV.backendUrl}/users/${userId}`).pipe(delay(500));
   }
 
   save(user: User): Observable<User> {
-    return this.http.put<User>(`${env.backendUrl}/users/${user.id}`, user, {
+    return this.http.put<User>(`${ENV.backendUrl}/users/${user.id}`, user, {
       headers: { 'Content-Type': 'application/json' }});
   }
 

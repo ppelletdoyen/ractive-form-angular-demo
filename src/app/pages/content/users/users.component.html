@@ -1,6 +1,7 @@
-<div *ngIf='users' class="container" style="margin-top: 70px;">
+<div *ngIf='(usersObs | async) as users else loading' class="container" style="margin-top: 20px;">
   <h1>USERS :</h1>
   <div *ngFor="let user of users">
     <a [routerLink]="['/detail', user.id]">{{ user.name }}</a>
   </div>
 </div>
+<ng-template #loading>Loading users ...</ng-template>
